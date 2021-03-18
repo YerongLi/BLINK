@@ -15,21 +15,21 @@ DATASETS = [
         "name": "AIDA-YAGO2 testa",
         "filename": "data/BLINK_benchmark/AIDA-YAGO2_testa.jsonl",
     },
-    {
-        "name": "AIDA-YAGO2 testb",
-        "filename": "data/BLINK_benchmark/AIDA-YAGO2_testb.jsonl",
-    },
-    {"name": "ACE 2004", "filename": "data/BLINK_benchmark/ace2004_questions.jsonl"},
-    {"name": "aquaint", "filename": "data/BLINK_benchmark/aquaint_questions.jsonl"},
-    {
-        "name": "clueweb - WNED-CWEB (CWEB)",
-        "filename": "data/BLINK_benchmark/clueweb_questions.jsonl",
-    },
-    {"name": "msnbc", "filename": "data/BLINK_benchmark/msnbc_questions.jsonl"},
-    {
-        "name": "wikipedia - WNED-WIKI (WIKI)",
-        "filename": "data/BLINK_benchmark/wnedwiki_questions.jsonl",
-    },
+    # {
+    #     "name": "AIDA-YAGO2 testb",
+    #     "filename": "data/BLINK_benchmark/AIDA-YAGO2_testb.jsonl",
+    # },
+    # {"name": "ACE 2004", "filename": "data/BLINK_benchmark/ace2004_questions.jsonl"},
+    # {"name": "aquaint", "filename": "data/BLINK_benchmark/aquaint_questions.jsonl"},
+    # {
+    #     "name": "clueweb - WNED-CWEB (CWEB)",
+    #     "filename": "data/BLINK_benchmark/clueweb_questions.jsonl",
+    # },
+    # {"name": "msnbc", "filename": "data/BLINK_benchmark/msnbc_questions.jsonl"},
+    # {
+    #     "name": "wikipedia - WNED-WIKI (WIKI)",
+    #     "filename": "data/BLINK_benchmark/wnedwiki_questions.jsonl",
+    # },
 ]
 
 PARAMETERS = {
