@@ -42,7 +42,8 @@ data_to_link = [ {
 
 _, _, _, _, _, predictions, scores, = main_dense.run(args, None, *models, test_data=data_to_link)
 print(predictions, scores)
-print(len(predictions))
+print(len(predictions[0]))
+print(len(predictions[1]))
 print('Done')
 
 
