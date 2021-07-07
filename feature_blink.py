@@ -78,7 +78,7 @@ set_to_calculate = []
 for entry in tqdm.tqdm(feature_list):
 	known_feature_set.add((entry['d'],entry['men'], entry['left']))
 for dataset in datasets:
-	df_ = pd.read_csv(dataset).head(100)
+	df_ = pd.read_csv(dataset).head(2000)
 	n, l, r = df_.shape[0], 0, 0
 	pbar = tqdm.tqdm(total = len(set(df_.QuestionMention.values)))
 	while r < n:
