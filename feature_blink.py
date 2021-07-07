@@ -45,7 +45,7 @@ config = {
 
 args = argparse.Namespace(**config)
 
-def process(set_to_calculate):
+def blink_process(set_to_calculate):
 	# doc, men, left, right, candidates
 	data_to_link = [
 		{
@@ -64,6 +64,7 @@ def process(set_to_calculate):
 	scores = scipy.special.softmax(scores)
 	predictions = {prediction : scores[i] for i, prediction in enumerate(predictions)}
 	print(predictions)
+
 def fetch_candidate(mentionLabel):
 	_, cand = mentionLabel.split('===')
 	return cand
@@ -106,7 +107,22 @@ for dataset in datasets:
 		# assert(len(gold_pairs) == 1)
 		# gt = gold_pairs[0].split(';')[1].replace(' ', '_')
 	pbar.close()
-print(len(set_to_calculate))
+
+def chunks(lst, n):
+    """Yield successive n-sized chunks from lst."""
+    return [lst[i:i + n] for i in range(0, len(lst), n)]
+
+set_to_calculate = chunks(set_to_calculate, 10)
+
+def save():
+	pass
+try:
+	with multiprocessing.Pool(40) as pool:
+		[ _ for _ in tqdm.tqdm(pool.imap_unordered(blink_process, set_to_calculate), total = len(docCands))]
+except KeyboardInterrupt:
+	save()
+	sys.exit()
+save()
 
 
 
