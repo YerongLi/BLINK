@@ -39,7 +39,7 @@ config = {
     "entity_encoding": models_path+"all_entities_large.t7",
     "crossencoder_model": models_path+"crossencoder_wiki_large.bin",
     "crossencoder_config": models_path+"crossencoder_wiki_large.json",
-    "fast": False, # set this to be true if speed is a concern
+    "fast": True, # set this to be true if speed is a concern
     "output_path": "logs/" # logging directory
 }
 
