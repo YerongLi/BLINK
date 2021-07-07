@@ -52,7 +52,25 @@ known_feature_set = set()
 feature_list = list(features.find({'t_': 'b1'}))
 
 known_feature_set = set()
-for entry in  tqdm.tqdm(feature_list):
-	known_feature_set.add((entry['d'],entry['men'], entry['left']))
+for entry in tqdm.tqdm(feature_list):
+	known_feature_set.add((entry['d'],entry['men'], entry['right']))
+for dataset in datasets:
+	df_ = pd.read_csv(dataset)
+	n, l, r = df_.shape[0], 0, 0
+	try:
+		while r < n:
+			while r < n - 1 and df_.iloc[l]['QuestionMention'] == df_.iloc[r + 1]['QuestionMention']:
+				r+= 1
+			batch = df_.iloc[l : r + 1]
+			first_line = batch.iloc[0]
+			print(first_line)
+			
+			# gold_pairs = batch[batch.Label.eq(1)]['Mention_label'].values
+			# assert(len(gold_pairs) == 1)
+			# gt = gold_pairs[0].split(';')[1].replace(' ', '_')
+
+	except:
+		pass
+
 
 
