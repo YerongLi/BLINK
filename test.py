@@ -7,7 +7,7 @@ config = {
     "test_entities": None,
     "test_mentions": None,
     "interactive": False,
-    "top_k": 10,
+    "top_k": 1000,
     "biencoder_model": models_path+"biencoder_wiki_large.bin",
     "biencoder_config": models_path+"biencoder_wiki_large.json",
     "entity_catalogue": models_path+"entity.jsonl",
