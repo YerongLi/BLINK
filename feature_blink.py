@@ -63,11 +63,11 @@ def blink_process(set_to_calculate):
 			for i, entry in enumerate(set_to_calculate)
 		]
 		print(len(data_to_link))
-		_, _, _, _, _, predictions, scores, = main_dense.run(args, None, *models, test_data=data_to_link)
-		scores = scipy.special.softmax(scores)
-		predictions = {i: {pred: scores[i][j] for j, pred in enumerate(prediction)} for i, prediction in enumerate(predictions)}
+		# _, _, _, _, _, predictions, scores, = main_dense.run(args, None, *models, test_data=data_to_link)
+		# scores = scipy.special.softmax(scores)
+		# predictions = {i: {pred: scores[i][j] for j, pred in enumerate(prediction)} for i, prediction in enumerate(predictions)}
 		# for i, entry in 
-		print(predictions)
+		# print(predictions)
 
 		
 	except KeyboardInterrupt:
@@ -134,7 +134,7 @@ def save():
 set_to_calculate = chunks(set_to_calculate, 4)
 
 
-print(f'Process chunks of size {len(chunks)}')
+print(f'Process chunks of size {len(set_to_calculate)}')
 try:
 	with multiprocessing.Pool(40) as pool:
 		[ _ for _ in tqdm.tqdm(pool.imap_unordered(blink_process, set_to_calculate), total = len(set_to_calculate))]
