@@ -1,4 +1,3 @@
-import py_stringmatching as sm
 import pandas as pd
 import pymongo
 import multiprocessing
