@@ -74,6 +74,7 @@ for dataset in datasets:
 		r = l
 		if (doc, men, left) in known_feature_set: continue
 		candidates = batch.Mention_label.apply(fetch_candidate)
+		print(batch.shape[0])
 		print(list(candidates))
 		# print(candidates.Mention_label.values)
 		sys.exit()
