@@ -131,13 +131,13 @@ def chunks(lst, n):
 def save():
 	pass
 
-set_to_calculate = chunks(set_to_calculate, 4)
+set_to_calculate = chunks(set_to_calculate[:3], 4)
 
 
 print(f'Process chunks of size {len(set_to_calculate)}')
 try:
 	with multiprocessing.Pool(40) as pool:
-		[ _ for _ in tqdm.tqdm(pool.imap_unordered(blink_process, set_to_calculate), total = len(set_to_calculate))]
+		[ _ for _ in tqdm.tqdm(pool.imap_unordered(blink_process, set_to_calculate), total = len(set_to_calculate), position = 1)]
 except KeyboardInterrupt:
 	save()
 	sys.exit()
