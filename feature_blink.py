@@ -48,6 +48,7 @@ models = main_dense.load_models(args, logger=None)
 
 def blink_process(set_to_calculate):
 	# doc, men, left, right, candidates
+	global feature_list
 	try:
 		data_to_link = [
 			{
@@ -91,6 +92,9 @@ feature_list = list(features.find({'t_': 'b1'}))
 set_to_calculate = []
 for entry in tqdm.tqdm(feature_list):
 	known_feature_set.add((entry['d'],entry['men'], entry['left']))
+del feature_list
+feature_dict = manager.list()
+
 for dataset in datasets:
 	df_ = pd.read_csv(dataset).head(200)
 	n, l, r = df_.shape[0], 0, 0
@@ -130,7 +134,7 @@ def save():
 set_to_calculate = chunks(set_to_calculate, 4)
 
 
-
+print(f'Process chunks of size {len(chunks)}')
 try:
 	with multiprocessing.Pool(40) as pool:
 		[ _ for _ in tqdm.tqdm(pool.imap_unordered(blink_process, set_to_calculate), total = len(set_to_calculate))]
