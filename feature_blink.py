@@ -54,12 +54,13 @@ datasets = [os.getenv("HOME") + f'/lnn-el/data/aida/template/full_{name}.csv' fo
 known_feature_set = set()
 feature_list = list(features.find({'t_': 'b1'}))
 
-known_feature_set = set()
+set_to_calculate = []
 for entry in tqdm.tqdm(feature_list):
 	known_feature_set.add((entry['d'],entry['men'], entry['left']))
 for dataset in datasets:
 	df_ = pd.read_csv(dataset)
 	n, l, r = df_.shape[0], 0, 0
+	pbar = tqdm.tqdm(total = len(set(df_.QuestionMention.values)))
 	while r < n:
 		while r < n - 1 and df_.iloc[l]['QuestionMention'] == df_.iloc[r + 1]['QuestionMention']:
 			r+= 1
@@ -72,17 +73,18 @@ for dataset in datasets:
 		
 		l = r + 1
 		r = l
+		pbar.update(1)
 		if (doc, men, left) in known_feature_set: continue
 		candidates = batch.Mention_label.apply(fetch_candidate)
-		print(batch.shape[0])
-		print(list(candidates))
+		# print(batch.shape[0])
+		set_to_calculate.append((doc, men, left, candidates))
 		# print(candidates.Mention_label.values)
-		sys.exit()
 		# print(doc, left)
 		# gold_pairs = batch[batch.Label.eq(1)]['Mention_label'].values
 		# assert(len(gold_pairs) == 1)
 		# gt = gold_pairs[0].split(';')[1].replace(' ', '_')
-
+	pbar.close()
+print(len(set_to_calculate))
 
 
 
