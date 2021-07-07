@@ -14,6 +14,7 @@ from nltk.corpus import stopwords
 import blink.main_dense as main_dense
 import argparse
 import scipy
+import os
 
 manager = multiprocessing.Manager()
 
@@ -37,5 +38,9 @@ config = {
     "fast": False, # set this to be true if speed is a concern
     "output_path": "logs/" # logging directory
 }
+
+
+datasets = ['train', 'testA', 'testB']
+datasets = [os.getenv("HOME") + f'/lnn-el/data/aida/template/full_{name}.csv' for name in datasets]
 
 
