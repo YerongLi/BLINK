@@ -63,7 +63,7 @@ def blink_process(set_to_calculate):
 			for i, entry in enumerate(set_to_calculate)
 		]
 		print(len(data_to_link))
-		# _, _, _, _, _, predictions, scores, = main_dense.run(args, None, *models, test_data=data_to_link)
+		_, _, _, _, _, predictions, scores, = main_dense.run(args, None, *models, test_data=data_to_link)
 		# scores = scipy.special.softmax(scores)
 		# predictions = {i: {pred: scores[i][j] for j, pred in enumerate(prediction)} for i, prediction in enumerate(predictions)}
 		# for i, entry in 
