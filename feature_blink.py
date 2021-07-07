@@ -48,3 +48,11 @@ datasets = ['train', 'testA', 'testB']
 datasets = [os.getenv("HOME") + f'/lnn-el/data/aida/template/full_{name}.csv' for name in datasets]
 
 
+known_feature_set = set()
+feature_list = list(features.find({'t_': 'b1'}))
+
+known_feature_set = set()
+for entry in  tqdm.tqdm(feature_list):
+	known_feature_set.add((entry['d'],entry['men'], entry['left']))
+
+
