@@ -65,6 +65,7 @@ for dataset in datasets:
 			first_line = batch.iloc[0]
 			print(first_line)
 			doc, left = first_line.QuestionMention.split('===')
+			mention = first_line.Mention
 			print(doc, left)
 			
 			# gold_pairs = batch[batch.Label.eq(1)]['Mention_label'].values
