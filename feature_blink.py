@@ -43,6 +43,8 @@ config = {
     "output_path": "logs/" # logging directory
 }
 
+args = argparse.Namespace(**config)
+
 def process(set_to_calculate):
 	# doc, men, left, right, candidates
 	data_to_link = [
@@ -56,10 +58,10 @@ def process(set_to_calculate):
 
 		}
 		for i, entry in enumerate(set_to_calculate)
-
 	]
-		# (doc, men, left,right, candidates) = entry
-		
+
+	_, _, _, _, _, predictions, scores, = main_dense.run(args, None, *models, test_data=data_to_link)
+	scores = scipy.special.softmax(scores)
 
 def fetch_candidate(mentionLabel):
 	_, cand = mentionLabel.split('===')
