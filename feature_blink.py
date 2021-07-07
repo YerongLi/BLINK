@@ -15,6 +15,7 @@ import scipy
 import os
 
 manager = multiprocessing.Manager()
+models_path = "models/" # the path where you stored the BLINK models
 
 logname = os.path.basename(__file__) + '.log'
 
