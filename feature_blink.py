@@ -127,7 +127,7 @@ def chunks(lst, n):
 def save():
 	pass
 
-set_to_calculate = chunks(set_to_calculate, 10)
+set_to_calculate = chunks(set_to_calculate, 4)
 
 
 
