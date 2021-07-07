@@ -43,6 +43,9 @@ config = {
     "output_path": "logs/" # logging directory
 }
 
+def fetch_candidate(mentionLabel):
+	_, cand = mentionLabel.split('===')
+	return cand
 
 datasets = ['train', 'testA', 'testB']
 datasets = [os.getenv("HOME") + f'/lnn-el/data/aida/template/full_{name}.csv' for name in datasets]
@@ -64,11 +67,15 @@ for dataset in datasets:
 		first_line = batch.iloc[0]
 		# print(first_line)
 		doc, left = first_line.QuestionMention.split('===')
-		mention = first_line.Mention
+		men = first_line.Mention
+
 		
-		print(doc, left)
 		l = r + 1
 		r = l
+		if (doc, men, left) in known_feature_set: continue
+		candidates = batch.Mention_label.apply(fetch_candidate)
+		print(candidates)
+		# print(doc, left)
 		# gold_pairs = batch[batch.Label.eq(1)]['Mention_label'].values
 		# assert(len(gold_pairs) == 1)
 		# gt = gold_pairs[0].split(';')[1].replace(' ', '_')
