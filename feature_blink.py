@@ -21,7 +21,12 @@ logname = os.path.basename(__file__) + '.log'
 if os.path.exists(logname):
   os.remove(logname)
 # # 建立mongodb连接
+client = pymongo.MongoClient(host='localhost', port=27017)
+
+db = client.dbpedia
+
 features = db.features
+# # 连接stock数据库，注意只有往数据库中插入了数据，数据库才会自动创建
 config = {
     "test_entities": None,
     "test_mentions": None,
