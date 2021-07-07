@@ -61,11 +61,13 @@ def blink_process(set_to_calculate):
 			}
 			for i, entry in enumerate(set_to_calculate)
 		]
-		print(data_to_link)
+		print(len(data_to_link))
 		_, _, _, _, _, predictions, scores, = main_dense.run(args, None, *models, test_data=data_to_link)
 		scores = scipy.special.softmax(scores)
-		predictions = {prediction : scores[i] for i, prediction in enumerate(predictions)}
+		predictions = {i: {pred: scores[i][j] for j, pred in enumerate(prediction)} for i, prediction in enumerate(predictions)}
+		# for i, entry in 
 		print(predictions)
+
 		
 	except KeyboardInterrupt:
 		raise KeyboardInterrupt
@@ -90,7 +92,7 @@ set_to_calculate = []
 for entry in tqdm.tqdm(feature_list):
 	known_feature_set.add((entry['d'],entry['men'], entry['left']))
 for dataset in datasets:
-	df_ = pd.read_csv(dataset).head(2000)
+	df_ = pd.read_csv(dataset).head(200)
 	n, l, r = df_.shape[0], 0, 0
 	pbar = tqdm.tqdm(total = len(set(df_.QuestionMention.values)))
 	while r < n:
