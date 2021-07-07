@@ -48,23 +48,32 @@ models = main_dense.load_models(args, logger=None)
 
 def blink_process(set_to_calculate):
 	# doc, men, left, right, candidates
-	data_to_link = [
-		{
-			"id": i,
-			"label": "unknown",
-			"label_id": -1,
-			"context_left": entry[2].lower(),
-			"mention": entry[1].lower(),
-            "context_right": entry[3].lower(),
+	try:
+		data_to_link = [
+			{
+				"id": i,
+				"label": "unknown",
+				"label_id": -1,
+				"context_left": entry[2].lower(),
+				"mention": entry[1].lower(),
+				"context_right": entry[3].lower(),
 
-		}
-		for i, entry in enumerate(set_to_calculate)
-	]
-
-	_, _, _, _, _, predictions, scores, = main_dense.run(args, None, *models, test_data=data_to_link)
-	scores = scipy.special.softmax(scores)
-	predictions = {prediction : scores[i] for i, prediction in enumerate(predictions)}
-	print(predictions)
+			}
+			for i, entry in enumerate(set_to_calculate)
+		]
+		print(data_to_link)
+		_, _, _, _, _, predictions, scores, = main_dense.run(args, None, *models, test_data=data_to_link)
+		scores = scipy.special.softmax(scores)
+		predictions = {prediction : scores[i] for i, prediction in enumerate(predictions)}
+		print(predictions)
+		
+	except KeyboardInterrupt:
+		raise KeyboardInterrupt
+	except:
+		import traceback
+		traceback.print_exc()
+		with open(logname, 'a') as f:
+			f.write(f'{set_to_calculate}\n')
 
 def fetch_candidate(mentionLabel):
 	_, cand = mentionLabel.split('===')
@@ -113,10 +122,13 @@ def chunks(lst, n):
     """Yield successive n-sized chunks from lst."""
     return [lst[i:i + n] for i in range(0, len(lst), n)]
 
-set_to_calculate = chunks(set_to_calculate, 10)
-
 def save():
 	pass
+
+set_to_calculate = chunks(set_to_calculate, 10)
+
+
+
 try:
 	with multiprocessing.Pool(40) as pool:
 		[ _ for _ in tqdm.tqdm(pool.imap_unordered(blink_process, set_to_calculate), total = len(set_to_calculate))]
