@@ -131,7 +131,7 @@ def chunks(lst, n):
 def save():
 	pass
 
-set_to_calculate = chunks(set_to_calculate[:3], 4)
+set_to_calculate = chunks(set_to_calculate[:3], 2)
 
 
 print(f'Process chunks of size {len(set_to_calculate)}')
