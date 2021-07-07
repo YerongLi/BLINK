@@ -44,6 +44,7 @@ config = {
 }
 
 args = argparse.Namespace(**config)
+models = main_dense.load_models(args, logger=None)
 
 def blink_process(set_to_calculate):
 	# doc, men, left, right, candidates
