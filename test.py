@@ -1,6 +1,6 @@
 import blink.main_dense as main_dense
 import argparse
-
+import scipy
 models_path = "models/" # the path where you stored the BLINK models
 
 config = {
@@ -41,6 +41,7 @@ data_to_link = [ {
                 ]
 
 _, _, _, _, _, predictions, scores, = main_dense.run(args, None, *models, test_data=data_to_link)
+scores = scipy.special.softmax(scores)
 print(predictions, scores)
 print(len(predictions[0]))
 print(len(predictions[1]))
