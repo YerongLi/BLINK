@@ -62,7 +62,8 @@ def process(set_to_calculate):
 
 	_, _, _, _, _, predictions, scores, = main_dense.run(args, None, *models, test_data=data_to_link)
 	scores = scipy.special.softmax(scores)
-
+	predictions = {prediction : scores[i] for i, prediction in enumerate(predictions)}
+	print(predictions)
 def fetch_candidate(mentionLabel):
 	_, cand = mentionLabel.split('===')
 	return cand
