@@ -118,7 +118,7 @@ def save():
 	pass
 try:
 	with multiprocessing.Pool(40) as pool:
-		[ _ for _ in tqdm.tqdm(pool.imap_unordered(blink_process, set_to_calculate), total = len(docCands))]
+		[ _ for _ in tqdm.tqdm(pool.imap_unordered(blink_process, set_to_calculate), total = len(set_to_calculate))]
 except KeyboardInterrupt:
 	save()
 	sys.exit()
