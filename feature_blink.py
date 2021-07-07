@@ -74,7 +74,7 @@ for dataset in datasets:
 		r = l
 		if (doc, men, left) in known_feature_set: continue
 		candidates = batch.Mention_label.apply(fetch_candidate)
-		print(candidates.MeMention_label.values)
+		print(candidates.Mention_label.values)
 		# print(doc, left)
 		# gold_pairs = batch[batch.Label.eq(1)]['Mention_label'].values
 		# assert(len(gold_pairs) == 1)
