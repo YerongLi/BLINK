@@ -43,6 +43,24 @@ config = {
     "output_path": "logs/" # logging directory
 }
 
+def process(set_to_calculate):
+	# doc, men, left, right, candidates
+	data_to_link = [
+		{
+			"id": i,
+			"label": "unknown",
+			"label_id": -1,
+			"context_left": entry[2].lower(),
+			"mention": entry[1].lower(),
+            "context_right": entry[3].lower(),
+
+		}
+		for i, entry in enumerate(set_to_calculate)
+
+	]
+		# (doc, men, left,right, candidates) = entry
+		
+
 def fetch_candidate(mentionLabel):
 	_, cand = mentionLabel.split('===')
 	return cand
@@ -68,6 +86,7 @@ for dataset in datasets:
 		first_line = batch.iloc[0]
 		# print(first_line)
 		doc, left = first_line.QuestionMention.split('===')
+		right = first_line.right
 		men = first_line.Mention
 
 		
@@ -77,7 +96,7 @@ for dataset in datasets:
 		if (doc, men, left) in known_feature_set: continue
 		candidates = batch.Mention_label.apply(fetch_candidate)
 		# print(batch.shape[0])
-		set_to_calculate.append((doc, men, left, candidates))
+		set_to_calculate.append((doc, men, left,right, candidates))
 		# print(candidates.Mention_label.values)
 		# print(doc, left)
 		# gold_pairs = batch[batch.Label.eq(1)]['Mention_label'].values
