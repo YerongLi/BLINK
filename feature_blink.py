@@ -57,23 +57,22 @@ for entry in tqdm.tqdm(feature_list):
 for dataset in datasets:
 	df_ = pd.read_csv(dataset)
 	n, l, r = df_.shape[0], 0, 0
-	try:
-		while r < n:
-			while r < n - 1 and df_.iloc[l]['QuestionMention'] == df_.iloc[r + 1]['QuestionMention']:
-				r+= 1
-			batch = df_.iloc[l : r + 1]
-			first_line = batch.iloc[0]
-			print(first_line)
-			doc, left = first_line.QuestionMention.split('===')
-			mention = first_line.Mention
-			print(doc, left)
-			
-			# gold_pairs = batch[batch.Label.eq(1)]['Mention_label'].values
-			# assert(len(gold_pairs) == 1)
-			# gt = gold_pairs[0].split(';')[1].replace(' ', '_')
+	while r < n:
+		while r < n - 1 and df_.iloc[l]['QuestionMention'] == df_.iloc[r + 1]['QuestionMention']:
+			r+= 1
+		batch = df_.iloc[l : r + 1]
+		first_line = batch.iloc[0]
+		# print(first_line)
+		doc, left = first_line.QuestionMention.split('===')
+		mention = first_line.Mention
+		
+		print(doc, left)
+		l = r + 1
+		r = l
+		# gold_pairs = batch[batch.Label.eq(1)]['Mention_label'].values
+		# assert(len(gold_pairs) == 1)
+		# gt = gold_pairs[0].split(';')[1].replace(' ', '_')
 
-	except:
-		pass
 
 
 
