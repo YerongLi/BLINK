@@ -145,7 +145,7 @@ def main(params):
         torch.cuda.manual_seed_all(seed)
 
     # Load train data
-    train_samples = utils.read_dataset("train", params["data_path"])[:500]
+    train_samples = utils.read_dataset("train", params["data_path"])[:200]
     # print(train_samples)
     # for item in train_samples:
     #     print(item)
