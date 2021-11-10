@@ -146,7 +146,7 @@ def main(params):
 
     # Load train data
     train_samples = utils.read_dataset("train", params["data_path"])[:10]
-    print(train_samples)
+    # print(train_samples)
     # for item in train_samples:
     #     print(item)
     logger.info("Read %d train samples." % len(train_samples))
@@ -161,9 +161,10 @@ def main(params):
         logger=logger,
         debug=params["debug"],
     )
-    print(train_data)
-    # for item in train_data:
-    #     print(item)
+    # print(train_data)
+    for item in train_data:
+        print(item)
+
     sys.exit()
 
     if params["shuffle"]:
