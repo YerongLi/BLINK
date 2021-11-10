@@ -149,7 +149,6 @@ def main(params):
     print(train_samples)
     for item in train_samples:
         print(item)
-    sys.exit()
     logger.info("Read %d train samples." % len(train_samples))
 
     train_data, train_tensor_data = data.process_mention_data(
@@ -162,6 +161,10 @@ def main(params):
         logger=logger,
         debug=params["debug"],
     )
+    for item in train_data:
+        print(item)
+    sys.exit()
+
     if params["shuffle"]:
         train_sampler = RandomSampler(train_tensor_data)
     else:
