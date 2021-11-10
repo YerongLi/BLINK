@@ -145,7 +145,7 @@ def main(params):
         torch.cuda.manual_seed_all(seed)
 
     # Load train data
-    train_samples = utils.read_dataset("train", params["data_path"])[:10]
+    train_samples = utils.read_dataset("train", params["data_path"])[:1000]
     # print(train_samples)
     # for item in train_samples:
     #     print(item)
@@ -178,7 +178,7 @@ def main(params):
 
     # Load eval data
     # TODO: reduce duplicated code here
-    valid_samples = utils.read_dataset("valid", params["data_path"])
+    valid_samples = utils.read_dataset("valid", params["data_path"])[:100]
     logger.info("Read %d valid samples." % len(valid_samples))
 
     valid_data, valid_tensor_data = data.process_mention_data(
@@ -233,6 +233,7 @@ def main(params):
             iter_ = tqdm(train_dataloader, desc="Batch")
 
         for step, batch in enumerate(iter_):
+            # print(batch)
             batch = tuple(t.to(device) for t in batch)
             context_input, candidate_input, _, _ = batch
             loss, _ = reranker(context_input, candidate_input)
