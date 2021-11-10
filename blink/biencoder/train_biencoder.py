@@ -146,6 +146,8 @@ def main(params):
 
     # Load train data
     train_samples = utils.read_dataset("train", params["data_path"])
+    print(train_samples)
+    sys.exit()
     logger.info("Read %d train samples." % len(train_samples))
 
     train_data, train_tensor_data = data.process_mention_data(
