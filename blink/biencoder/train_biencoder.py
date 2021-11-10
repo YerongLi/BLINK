@@ -161,9 +161,10 @@ def main(params):
         logger=logger,
         debug=params["debug"],
     )
-    for item in train_data:
-        print(item)
-    sys.exit()
+    print(train_data)
+    # for item in train_data:
+    #     print(item)
+    # sys.exit()
 
     if params["shuffle"]:
         train_sampler = RandomSampler(train_tensor_data)
