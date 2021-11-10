@@ -145,7 +145,7 @@ def main(params):
         torch.cuda.manual_seed_all(seed)
 
     # Load train data
-    train_samples = utils.read_dataset("train", params["data_path"])[:1000]
+    train_samples = utils.read_dataset("train", params["data_path"])[:500]
     # print(train_samples)
     # for item in train_samples:
     #     print(item)
@@ -162,10 +162,10 @@ def main(params):
         debug=params["debug"],
     )
     # print(train_data)
-    for item in train_data:
-        print(item)
+    # for item in train_data:
+    #     print(item)
 
-    sys.exit()
+    # sys.exit()
 
     if params["shuffle"]:
         train_sampler = RandomSampler(train_tensor_data)

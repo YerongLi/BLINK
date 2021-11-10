@@ -253,7 +253,7 @@ def main(params):
             torch.save(candidate_encoding, cand_encode_path)
 
 
-    test_samples = utils.read_dataset(params["mode"], params["data_path"])
+    test_samples = utils.read_dataset(params["mode"], params["data_path"])[:100]
     logger.info("Read %d test samples." % len(test_samples))
    
     test_data, test_tensor_data = data.process_mention_data(
