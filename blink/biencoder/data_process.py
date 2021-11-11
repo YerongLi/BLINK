@@ -135,7 +135,7 @@ def process_mention_data(
             ent_start_token,
             ent_end_token,
         )
-
+        if sample["world"] not in world_to_id: return
         label = sample[label_key]
         title = sample.get(title_key, None)
         label_tokens = get_candidate_representation(
