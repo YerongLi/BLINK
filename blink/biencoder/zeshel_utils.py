@@ -8,8 +8,8 @@
 # Utility code for zeshel dataset
 import json
 import torch
-
-DOC_PATH = "/private/home/ledell/zeshel/data/documents/"
+import os
+DOC_PATH = os.getenv('HOME')+"/BLINK/data/zeshel/documents/"
 
 WORLDS = [
     'american_football',
