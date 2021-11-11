@@ -12,22 +12,22 @@ import os
 DOC_PATH = os.getenv('HOME')+"/BLINK/data/zeshel/documents/"
 
 WORLDS = [
-    'american_football',
-    'doctor_who',
+    # 'american_football',
+    # 'doctor_who',
     'fallout',
-    'final_fantasy',
-    'military',
-    'pro_wrestling',
-    'starwars',
-    'world_of_warcraft',
-    'coronation_street',
-    'muppets',
-    'ice_hockey',
-    'elder_scrolls',
-    'forgotten_realms',
-    'lego',
-    'star_trek',
-    'yugioh'
+    # 'final_fantasy',
+    # 'military',
+    # 'pro_wrestling',
+    # 'starwars',
+    # 'world_of_warcraft',
+    # 'coronation_street',
+    # 'muppets',
+    # 'ice_hockey',
+    # 'elder_scrolls',
+    # 'forgotten_realms',
+    # 'lego',
+    # 'star_trek',
+    # 'yugioh'
 ]
 
 world_to_id = {src : k for k, src in enumerate(WORLDS)}
